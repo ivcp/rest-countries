@@ -44,7 +44,7 @@ const CountryDetails = ({ loading, setLoading, countries }) => {
 
   return (
     <main>
-      <Link to="..">Back</Link>
+      <Link to="/">Back</Link>
       {Object.keys(countryDetails).length > 0 && !loading && !error.error && (
         <>
           <img src={flags.svg} alt={`flag of ${name.common}`} />

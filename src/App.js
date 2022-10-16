@@ -10,6 +10,7 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log('effect');
     setLoading(true);
     async function getCountries() {
       try {
