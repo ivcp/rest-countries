@@ -1,0 +1,115 @@
+.searchAndFilter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 37.5em) {
+  .searchAndFilter {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-inline: 8rem;
+  }
+}
+
+.search {
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 37.5em) {
+  .search {
+    width: 48rem;
+  }
+}
+.searchInput {
+  background-color: hsl(var(--elements));
+  color: hsl(var(--text));
+  border: none;
+  height: 5rem;
+  padding-inline-start: 8rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+@media (min-width: 37.5em) {
+  .searchInput {
+    height: 5.5rem;
+  }
+}
+
+.searchInput::placeholder {
+  color: hsl(var(--text));
+}
+
+.icon {
+  font-size: 1.6rem;
+  position: absolute;
+  transform: translateX(3rem);
+  color: hsl(var(--text));
+}
+
+.filterContainer {
+  width: 90%;
+  margin-inline: auto;
+  align-self: flex-start;
+}
+
+@media (min-width: 37.5em) {
+  .filterContainer {
+    width: 20rem;
+    margin-inline: 0;
+  }
+}
+
+.filter {
+  font: inherit;
+  font-size: 1.2rem;
+  height: 5rem;
+  padding-inline: 2rem;
+  border-radius: 0.5rem;
+  background-color: hsl(var(--elements));
+  border: none;
+  color: hsl(var(--text));
+  width: 50%;
+  appearance: none;
+  background-image: url('../assets/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 2rem) center;
+  background-size: 1rem;
+}
+
+@media (min-width: 37.5em) {
+  .filter {
+    height: 5.5rem;
+    width: 100%;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+}
+
+.countryCards {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  gap: 3rem;
+  margin-top: 4rem;
+}
+
+.countryCards a {
+  text-decoration: none;
+}
+
+@media (min-width: 37.5em) {
+  .countryCards {
+    grid-template-columns: repeat(4, 1fr);
+    width: 90%;
+    margin-inline: auto;
+    gap: 7rem;
+  }
+}

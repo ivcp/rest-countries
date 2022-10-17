@@ -1,0 +1,46 @@
+.card {
+  background-color: hsl(var(--elements));
+  width: 26.5rem;
+  height: 33.5rem;
+  border-radius: 0.4rem;
+}
+
+.card img {
+  border-top-left-radius: 0.4rem;
+  border-top-right-radius: 0.4rem;
+  height: 15.5rem;
+  width: 100%;
+  object-fit: cover;
+}
+
+.body {
+  padding: 3rem 2.5rem;
+  color: hsl(var(--text));
+}
+
+.body h2 {
+  margin-bottom: 1.2rem;
+}
+
+@media (min-width: 37.5em) {
+  .body h2 {
+    font-size: 1.8rem;
+  }
+}
+
+.body p {
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 37.5em) {
+  .body p {
+    font-size: 1.4rem;
+  }
+}
+
+.body span {
+  font-weight: 300;
+  color: hsl(var(--text) / 0.6);
+}

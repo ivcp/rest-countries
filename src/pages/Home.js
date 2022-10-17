@@ -1,5 +1,8 @@
 import React, { useState, useRef } from 'react';
 import Card from '../components/Card';
+import styles from './Home.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Home = ({ countries }) => {
   const [searching, setSearching] = useState(false);
@@ -36,65 +39,79 @@ const Home = ({ countries }) => {
 
   return (
     <main>
-      <input
-        ref={searchRef}
-        type="search"
-        name="search"
-        onChange={searchCountries}
-      />
-      <div>
-        <select
-          ref={filterRef}
-          name="filter"
-          id="filter"
-          onChange={filterCountries}
-        >
-          <option value="">Filter by region</option>
-          <option value="Africa">Africa</option>
-          <option value="Americas">America</option>
-          <option value="Asia">Asia</option>
-          <option value="Europe">Europe</option>
-          <option value="Oceania">Oceania</option>
-        </select>
+      <div className={styles.searchAndFilter}>
+        <div className={styles.search}>
+          <FontAwesomeIcon className={styles.icon} icon={faMagnifyingGlass} />
+          <input
+            className={styles.searchInput}
+            ref={searchRef}
+            name="search"
+            onChange={searchCountries}
+            placeholder="Search for a country..."
+          />
+        </div>
+        <div className={styles.filterContainer}>
+          <select
+            className={styles.filter}
+            ref={filterRef}
+            name="filter"
+            id="filter"
+            onChange={filterCountries}
+          >
+            <option value="" selected disabled hidden>
+              Filter by Region
+            </option>
+            <option value="Africa">Africa</option>
+            <option value="Americas">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
+          </select>
+        </div>
       </div>
-      {!searching &&
-        !filtering &&
-        countries.map(country => (
-          <Card
-            key={country.cca3}
-            id={country.cca3}
-            name={country.name.common}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-          />
-        ))}
+      <div className={styles.countryCards}>
+        {!searching &&
+          !filtering &&
+          countries.map(country => (
+            <Card
+              key={country.cca3}
+              id={country.cca3}
+              image={country.flags.svg}
+              name={country.name.common}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+            />
+          ))}
 
-      {searching &&
-        !filtering &&
-        searchResults.map(country => (
-          <Card
-            key={country.cca3}
-            id={country.cca3}
-            name={country.name.common}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-          />
-        ))}
+        {searching &&
+          !filtering &&
+          searchResults.map(country => (
+            <Card
+              key={country.cca3}
+              id={country.cca3}
+              image={country.flags.svg}
+              name={country.name.common}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+            />
+          ))}
 
-      {filtering &&
-        !searching &&
-        filterResults.map(country => (
-          <Card
-            key={country.cca3}
-            id={country.cca3}
-            name={country.name.common}
-            population={country.population}
-            region={country.region}
-            capital={country.capital}
-          />
-        ))}
+        {filtering &&
+          !searching &&
+          filterResults.map(country => (
+            <Card
+              key={country.cca3}
+              id={country.cca3}
+              image={country.flags.svg}
+              name={country.name.common}
+              population={country.population}
+              region={country.region}
+              capital={country.capital}
+            />
+          ))}
+      </div>
     </main>
   );
 };
