@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun } from '@fortawesome/free-solid-svg-icons';
@@ -9,6 +9,13 @@ const Header = () => {
   const toggleTheme = () => {
     setNightMode(prev => !prev);
   };
+
+  useEffect(() => {
+    nightMode
+      ? document.body.classList.remove('light')
+      : document.body.classList.add('light');
+  }, [nightMode]);
+
   return (
     <header className={styles.header}>
       <h1>Where in the world?</h1>
