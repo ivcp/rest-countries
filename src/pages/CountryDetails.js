@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import styles from './CountryDetails.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import BorderCountry from '../components/BorderCountry';
 
 const CountryDetails = ({ loading, setLoading, countries }) => {
   const { id } = useParams();
@@ -44,56 +48,87 @@ const CountryDetails = ({ loading, setLoading, countries }) => {
 
   return (
     <main>
-      <Link to="/">Back</Link>
+      <div className={styles.btnContainer}>
+        <Link to="/" className={styles.backButton}>
+          <FontAwesomeIcon className={styles.icon} icon={faArrowLeftLong} />
+          Back
+        </Link>
+      </div>
       {Object.keys(countryDetails).length > 0 && !loading && !error.error && (
-        <>
-          <img src={flags.svg} alt={`flag of ${name.common}`} />
-          <h1>{name.common}</h1>
-          <p>Population: {population.toLocaleString('en-US')}</p>
-          <p>Region: {region}</p>
-          <p>Sub Region: {subregion}</p>
-          <p>Capital: {capital}</p>
-          <p>Top Level Domain: {tld}</p>
-          <p>
-            Currencies:{' '}
-            {Object.values(currencies).map((c, i) =>
-              Object.values(currencies).length === 1 ? (
-                <span key={c.name}>{c.name}</span>
-              ) : i === Object.values(currencies).length - 1 ? (
-                <span key={c.name}>{c.name}</span>
-              ) : (
-                <span key={c.name}>{c.name}, </span>
-              )
-            )}
-          </p>
-          <p>
-            Languages:{' '}
-            {Object.values(languages).map((l, i) =>
-              Object.values(languages).length === 1 ? (
-                <span key={l}>{l}</span>
-              ) : i === Object.values(languages).length - 1 ? (
-                <span key={l}>{l}</span>
-              ) : (
-                <span key={l}>{l}, </span>
-              )
-            )}
-          </p>
-          <div>
-            <p>Border countries:</p>
-            {borders ? (
-              countries.map(
-                country =>
-                  borders.includes(country.cca3) && (
-                    <Link key={country.cca3} to={`/${country.cca3}`}>
-                      {country.name.common}
-                    </Link>
-                  )
-              )
-            ) : (
-              <p>None</p>
-            )}
+        <article className={styles.article}>
+          <div className={styles.flagContainer}>
+            <img
+              className={styles.flag}
+              src={flags.svg}
+              alt={`flag of ${name.common}`}
+            />
           </div>
-        </>
+          <div className={styles.details}>
+            <h1>{name.common}</h1>
+            <div className={styles.container}>
+              <div>
+                <p>
+                  <span>Population:</span> {population.toLocaleString('en-US')}
+                </p>
+                <p>
+                  <span>Region:</span> {region}
+                </p>
+                <p>
+                  <span>Sub Region:</span> {subregion}
+                </p>
+                <p>
+                  <span>Capital:</span> {capital}
+                </p>
+              </div>
+              <div>
+                <p>
+                  <span>Top Level Domain:</span> {tld}
+                </p>
+                <p>
+                  <span>Currencies:</span>{' '}
+                  {Object.values(currencies).map((c, i) =>
+                    Object.values(currencies).length === 1 ? (
+                      <span key={c.name}>{c.name}</span>
+                    ) : i === Object.values(currencies).length - 1 ? (
+                      <span key={c.name}>{c.name}</span>
+                    ) : (
+                      <span key={c.name}>{c.name}, </span>
+                    )
+                  )}
+                </p>
+                <p>
+                  <span>Languages:</span>{' '}
+                  {Object.values(languages).map((l, i) =>
+                    Object.values(languages).length === 1 ? (
+                      <span key={l}>{l}</span>
+                    ) : i === Object.values(languages).length - 1 ? (
+                      <span key={l}>{l}</span>
+                    ) : (
+                      <span key={l}>{l}, </span>
+                    )
+                  )}
+                </p>
+              </div>
+            </div>
+            <div className={styles.bordersContainer}>
+              <p>
+                <span>Border countries:</span>
+              </p>
+              <div className={styles.borders}>
+                {borders ? (
+                  countries.map(
+                    country =>
+                      borders.includes(country.cca3) && (
+                        <BorderCountry key={country.cca3} country={country} />
+                      )
+                  )
+                ) : (
+                  <p>None</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
       )}
       {loading && <div>Loading...</div>}
       {error.error && <div>{error.message}</div>}

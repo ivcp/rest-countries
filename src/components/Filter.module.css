@@ -1,0 +1,26 @@
+.filter {
+  font: inherit;
+  font-size: 1.2rem;
+  height: 5rem;
+  padding-inline: 2rem;
+  border-radius: 0.5rem;
+  background-color: hsl(var(--elements));
+  border: none;
+  color: hsl(var(--text));
+  width: 50%;
+  appearance: none;
+  background-image: url('../assets/chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: calc(100% - 2rem) center;
+  background-size: 1rem;
+  box-shadow: 0px 5px 10px -3px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 37.5em) {
+  .filter {
+    height: 5.5rem;
+    width: 100%;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
+}
